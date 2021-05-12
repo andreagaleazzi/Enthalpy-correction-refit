@@ -83,8 +83,8 @@ int main(void)
 
 
 #if 1
-	dlib::solve_least_squares_lm(dlib::objective_delta_stop_strategy(1.e-20).be_verbose(),
-		//dlib::solve_least_squares(dlib::gradient_norm_stop_strategy(1.e-20).be_verbose(),
+	//dlib::solve_least_squares_lm(dlib::objective_delta_stop_strategy(1.e-20).be_verbose(),
+	dlib::solve_least_squares(dlib::gradient_norm_stop_strategy(1.e-20).be_verbose(),
 		residual,
 		derivative(residual),
 		input_data,
@@ -93,7 +93,7 @@ int main(void)
 
 	std::cout << std::endl << "-----------------------------" << std::endl;
 	std::cout << "Solution:" << std::endl;
-	for (int i = 0; i < 5 * 2; i++)
+	for (int i = 0; i < POLY_FEATURES * 2; i++)
 	{
 		for (int j = 0; j < MIXTURE_MOLTIPLICATOR; j++)
 		{

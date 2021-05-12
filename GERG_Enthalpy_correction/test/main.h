@@ -8,9 +8,10 @@
 #include <chrono>
 
 // MIXTURE CORRECTION SELECTOR
-#define DATASET_NAME "dat/extended/liq/dataset_liq_12.csv"
-#define PHASE 0	// [0, 1] = [Vapour, Liquid]
-#define MIXTURE_COMPS 1
+#define DATASET_NAME "dat/extended/liq/dataset_liq_123.csv"
+#define PHASE 1	// [0, 1] = [Vapour, Liquid]
+#define MIXTURE_COMPS 3
+#define POLY_FEATURES 5
 
 #define MIXTURE_MOLTIPLICATOR MIXTURE_COMPS
 #if MIXTURE_COMPS == 3
@@ -27,7 +28,7 @@ extern unsigned int n_data;
 // ----------------------------------------------------------------------------------------
 
 typedef dlib::matrix<double, ed::SIZE, 1> input_vector;
-typedef dlib::matrix<double, 5 * 2 * MIXTURE_MOLTIPLICATOR, 1> parameter_vector;
+typedef dlib::matrix<double, POLY_FEATURES * 2 * MIXTURE_MOLTIPLICATOR, 1> parameter_vector;
 
 // ----------------------------------------------------------------------------------------
 

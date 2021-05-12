@@ -30,7 +30,7 @@ void print_results_to_file(std::string dataset_name, const parameter_vector& sol
 	file.open(dataset_name + "_res.dat");
 
 	file << "Solution matrix" << std::endl;
-	for (int i = 0; i < 4 * 2; i++)
+	for (int i = 0; i < POLY_FEATURES * 2; i++)
 		{
 			for (int j = 0; j < MIXTURE_MOLTIPLICATOR; j++)
 			{
