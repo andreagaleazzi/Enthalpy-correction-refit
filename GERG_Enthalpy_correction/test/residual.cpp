@@ -2,7 +2,7 @@
 
 double residual(const std::pair<input_vector, double>& data, const parameter_vector& params)
 {
-#if 0
+#if 1
 	double weight = 1.;
 
 	double temp = data.first(ed::T1);
@@ -52,8 +52,7 @@ double residual(const std::pair<input_vector, double>& data, const parameter_vec
 
 	return sqrt(weight) * (model(data.first, params) - data.second) / n_data;
 #else
-	//return (model(data.first, params) - data.second) / n_data;
-	//return (model(data.first, params) - data.second) / n_data;
-	return (model(data.first, params) - data.second);
+	return (model(data.first, params) - data.second) / n_data;
+	//return (model(data.first, params) - data.second);
 #endif
 }

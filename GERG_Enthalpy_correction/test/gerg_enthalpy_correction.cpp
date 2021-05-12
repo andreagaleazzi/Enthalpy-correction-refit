@@ -48,11 +48,22 @@ int main(void)
 #endif
 
 	parameter_vector initial_guess;
+	//initial_guess = 0.;
 	initial_guess = 1.;
-	//initial_guess = { 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12 };
 	parameter_vector solution = initial_guess;
 
-
+	for (int i = 0; i < POLY_FEATURES * 2; i++)
+	{
+		for (int j = 0; j < MIXTURE_MOLTIPLICATOR; j++)
+		{
+			double parameter = solution(i + j * 2 * POLY_FEATURES);
+			if (parameter > 0)
+				printf("+%.2e\t", parameter);
+			else
+				printf("%.2e\t", parameter);
+		}
+		printf("\n");
+	}
 
 #if 0
 	for (int i = 0; i < input_data.size(); i++)
@@ -83,8 +94,8 @@ int main(void)
 
 
 #if 1
-	//dlib::solve_least_squares_lm(dlib::objective_delta_stop_strategy(1.e-20).be_verbose(),
-	dlib::solve_least_squares(dlib::gradient_norm_stop_strategy(1.e-20).be_verbose(),
+	dlib::solve_least_squares_lm(dlib::objective_delta_stop_strategy(1.e-20).be_verbose(),
+	//dlib::solve_least_squares(dlib::gradient_norm_stop_strategy(1.e-20).be_verbose(),
 		residual,
 		derivative(residual),
 		input_data,
@@ -97,7 +108,7 @@ int main(void)
 	{
 		for (int j = 0; j < MIXTURE_MOLTIPLICATOR; j++)
 		{
-			double parameter = solution(i + j * 8);
+			double parameter = solution(i + j * 2 * POLY_FEATURES);
 			if (parameter > 0)
 				printf("+%.18e\t", parameter);
 			else

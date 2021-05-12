@@ -34,11 +34,11 @@ void print_results_to_file(std::string dataset_name, const parameter_vector& sol
 		{
 			for (int j = 0; j < MIXTURE_MOLTIPLICATOR; j++)
 			{
-				double parameter = solution(i + j * 8);
+				double parameter = solution(i + j * POLY_FEATURES * 2);
 				if (parameter > 0)
-					file << "+" << std::scientific << std::setprecision(18) << parameter;	// "+%.18e\t"
+					file << "+" << std::scientific << std::setprecision(18) << parameter << "\t";	// "+%.18e\t"
 				else
-					file << std::scientific << std::setprecision(18) << parameter;			// "-%.18e\t"
+					file << std::scientific << std::setprecision(18) << parameter << "\t";			// "-%.18e\t"
 			}
 			file << std::endl;
 		}
@@ -55,7 +55,9 @@ void print_results_to_file(std::string dataset_name, const parameter_vector& sol
 	file << "std_dev_rel_error\t" << stats_results.std_dev_rel_error * 100. << " %" << std::endl;
 	file << std::endl;
 
+	file << "-> Max abs error" << std::endl;
 	print_statistics_to_file_at(file, stats_results.i_max_abs_residue, solution, stats_results);
+	file << "-> Max rel error" << std::endl;
 	print_statistics_to_file_at(file, stats_results.i_max_abs_rel_residue, solution, stats_results);
 
 	file.close();
